@@ -1,0 +1,49 @@
+name: Deploy External API to Salesforce
+
+on:
+  # Automatically triggers when there is a push to the main branch
+  push:
+    branches:
+      - main
+  # Optionally, allow manual triggering of the workflow
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      # Step 1: Checkout the repository code
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      # Step 2: Set up Salesforce CLI (sfdx) for deployment
+      - name: Set up Salesforce CLI
+        run: |
+          curl -sSL https://developer.salesforce.com/media/salesforce-cli/sfdx-linux-amd64.tar.xz -o sfdx-linux.tar.xz
+          tar -xvf sfdx-linux.tar.xz
+          ./sfdx/install
+
+      # Step 3: Authenticate to Salesforce using GitHub Secrets
+      - name: Authenticate to Salesforce Org
+        run: |
+          sfdx force:auth:login --username ${{ secrets.SALESFORCE_USERNAME }} --password ${{ secrets.SALESFORCE_PASSWORD }} --securitytoken ${{ secrets.SALESFORCE_SECURITY_TOKEN }} --setdefaultusername
+
+      # Step 4: Run Apex tests before deployment
+      - name: Run Apex Tests
+        run: |
+          result=$(sfdx force:apex:test:run --resultformat human --codecoverage --synchronous --wait 10)
+          echo "$result"
+
+          if [[ "$result" == *"Test failed"* ]]; then
+            echo "Apex tests failed. Aborting deployment."
+            exit 1
+          fi
+          echo "Apex tests passed."
+      
+      # Step 5: Deploy the External API module to Salesforce Org
+      - name: Deploy External API to Salesforce Org
+        run: |
+          sfdx force:source:deploy --sourcepath ./src/external-api --targetusername ${{ secrets.SALESFORCE_USERNAME }} --json --loglevel debug
+
+    
