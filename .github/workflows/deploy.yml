@@ -21,7 +21,7 @@ jobs:
           wget https://developer.salesforce.com/media/salesforce-cli/sfdx/channels/stable/sfdx-linux-x64.tar.xz
           mkdir -p sfdx-cli
           tar xJf sfdx-linux-x64.tar.xz -C sfdx-cli --strip-components 1
-          export PATH=$PWD/sfdx-cli/bin:$PATH
+          echo "$PWD/sfdx-cli/bin" >> $GITHUB_PATH
           sfdx --version
       
 
