@@ -9,13 +9,13 @@ on:
   workflow_dispatch:
 
 jobs:
-  deploy:
+  validate:
     runs-on: ubuntu-latest
 
     steps:
       # Step 1: Checkout the repository code
       - name: Checkout repository
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
 
         - name: Install Salesforce CLI
         run: |
@@ -42,7 +42,7 @@ jobs:
           echo "Apex tests passed."
       
       # Step 5: Deploy the External API module to Salesforce Org
-      - name: Deploy External API to Salesforce Org
+      - name: Deploy Metadata to Salesforce Org
         run: |
           sfdx force:source:deploy --sourcepath ./src/external-api --targetusername ${{ secrets.SALESFORCE_USERNAME }} --json --loglevel debug
 
