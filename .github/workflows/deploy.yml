@@ -22,6 +22,7 @@ jobs:
           npm install sfdx-cli
           node_modules/sfdx-cli/bin/run --version
           node_modules/sfdx-cli/bin/run plugins --core
+          export PATH=./sfdx/$(pwd):$PATH
 
       # Step 3: Authenticate to Salesforce using GitHub Secrets
       - name: Authenticate to Salesforce Org
