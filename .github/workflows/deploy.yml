@@ -17,12 +17,11 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v3
 
-        - name: Install Salesforce CLI
+      - name: Install Salesforce CLI
         run: |
-          echo "Installing Salesforce CLI..."
-          curl -sL https://developer.salesforce.com/media/salesforce-cli/sfdx-linux-x64.tar.xz | tar xJf -
-          sudo ./sfdx/install
-
+          npm install sfdx-cli
+          node_modules/sfdx-cli/bin/run --version
+          node_modules/sfdx-cli/bin/run plugins --core
 
       # Step 3: Authenticate to Salesforce using GitHub Secrets
       - name: Authenticate to Salesforce Org
@@ -42,7 +41,7 @@ jobs:
           echo "Apex tests passed."
       
       # Step 5: Deploy the External API module to Salesforce Org
-      - name: Deploy Metadata to Salesforce Org
+      - name: Deploy Metafat to Salesforce Org
         run: |
           sfdx force:source:deploy --sourcepath ./src/external-api --targetusername ${{ secrets.SALESFORCE_USERNAME }} --json --loglevel debug
 
