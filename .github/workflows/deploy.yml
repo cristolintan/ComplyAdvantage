@@ -5,7 +5,7 @@ on:
   push:
     branches:
       - main
-  # Optionally, allow manual triggering of the workflows
+  # Optionally, allow manual triggering of the workflow
   workflow_dispatch:
 
 jobs:
@@ -19,8 +19,10 @@ jobs:
 
       # Step 2: Set up Salesforce CLI (sfdx) for deployment
       - name: Set up Salesforce CLI
-        uses: salesforcecli/action-sfdx-cli@v2
-
+        run: |
+         curl -sSL https://developer.salesforce.com/media/salesforce-cli/sfdx-linux-amd64.tar.xz -o sfdx-linux.tar.xz
+         tar -xvf sfdx-linux.tar.xz
+         ./sfdx/install
       # Step 3: Authenticate to Salesforce using GitHub Secrets
       - name: Authenticate to Salesforce Org
         run: |
