@@ -34,4 +34,9 @@ jobs:
         run: |
          PACKAGE_ID="0HogK000000009hSAA"
          sfdx force:package:version:create -p $PACKAGE_ID --installation-key-bypass -w 10 --json | tee package.json
+         - name: Create a New Package Version
+           INSTALLATION_URL=$(echo "$PACKAGE_VERSION_OUTPUT" | jq -r '.result.InstallationUrl')
+           echo "Installation URL: $INSTALLATION_URL"
+
+         
          
