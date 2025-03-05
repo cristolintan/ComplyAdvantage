@@ -32,5 +32,6 @@ jobs:
 
       - name: Create a New Package Version
         run: |
-         PACKAGE_ID="0HogK0000000001SAA"
+         PACKAGE_ID="0HogK000000009hSAA"
          sfdx force:package:version:create -p $PACKAGE_ID --installation-key-bypass -w 10 --json | tee package.json
+         
