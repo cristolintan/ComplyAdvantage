@@ -8,7 +8,8 @@
       "package": "MyDeploymentPackage",
       "versionDescription": "Deployment package for client",
       "include": [
-        "force-app/main/default/classes/MyClass.cls"
+        "force-app/main/default/classes/MyClass.cls",
+        "force-app/main/default/classes/Test.cls"
       ]
     }
   ],
