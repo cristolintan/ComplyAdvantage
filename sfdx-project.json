@@ -8,9 +8,7 @@
       "package": "MyDeploymentPackage",
       "versionDescription": "Deployment package for client",
       "include": [
-        "force-app/main/default/classes/MyClass.cls",
-        "force-app/main/default/triggers/MyTrigger.trigger",
-        "force-app/main/default/objects/Custom_Pbject__c"
+        "force-app/main/default/classes/MyClass.cls"
       ]
     }
   ],
