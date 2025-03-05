@@ -5,7 +5,7 @@ on:
   push:
     branches:
       - master
-  # Optionally, allow manual triggering of the workflow
+  # Optionally, allow manual triggering of the workflows
   workflow_dispatch:
 
 jobs:
