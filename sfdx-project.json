@@ -19,6 +19,14 @@
       "default": false,
       "package": "MyDeploymentPackageT",
       "versionDescription": "Deployment package for client"
+    },
+    {
+      "versionName": "ver 0.1",
+      "versionNumber": "0.1.0.NEXT",
+      "path": "force-app",
+      "default": false,
+      "package": "ComplyAdvantage",
+      "versionDescription": "Deployment package for client2"
     }
   ],
   "name": "Dev",
@@ -27,6 +35,7 @@
   "sourceApiVersion": "58.0",
   "packageAliases": {
     "MyDeploymentPackage": "0HogK0000000001SAA",
-    "MyDeploymentPackageT": "0HogK000000009hSAA"
+    "MyDeploymentPackageT": "0HogK000000009hSAA",
+    "ComplyAdvantage": "0HogK00000000BJSAY"
   }
 }
