@@ -33,7 +33,7 @@ jobs:
       - name: Create a New Package Version
         run: |
          PACKAGE_ID="0HogK000000009hSAA"
-         sf package version create -p $PACKAGE_ID --installation-key-bypass -w 10 --json | tee package.json
+         sf package version create --package $PACKAGE_ID --installation-key-bypass  \ --definitionfile config/project-scratch-def.json --code-coverage --wait 10
          - name: Create a New Package Version
 
          
